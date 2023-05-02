@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class TransactionsExport implements FromQuery, WithHeadings, WithMapping, WithChunkReading
+class SimpleTransactionsExport implements FromQuery, WithHeadings, WithMapping, WithChunkReading
 {
     use Exportable;
 
