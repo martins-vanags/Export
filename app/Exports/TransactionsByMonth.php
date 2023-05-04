@@ -69,6 +69,13 @@ class TransactionsByMonth implements WithMapping, WithHeadings, WithTitle, FromQ
 
     public function map($row): array
     {
+        // You can decrease the increment update by adding something like this:
+        // $this->map = $this->map + 1;
+        // Then check if ($this->map === $this->chunkSize())
+        // and if so, update the export with the new processed rows
+        // So one increment update every chunk size instead of every row
+
+
         $this->export->increment('processed_rows');
 
         return [
