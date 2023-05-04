@@ -25,7 +25,7 @@ class TransactionSeeder extends Seeder
                 'amount'        => rand(10000, 99999),
                 'description'   => $faker->sentence(),
                 'user_id'       => $users->random(),
-                'created_at'    => now(),
+                'created_at'    => $faker->dateTimeBetween('-1 year', 'now'),
                 'updated_at'    => now(),
             ];
         }
