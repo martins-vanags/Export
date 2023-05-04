@@ -24,12 +24,9 @@ class TransactionsByMonth implements WithMapping, WithHeadings, WithTitle, FromQ
     use Exportable;
 
     public Model|Builder $export;
-    public int $totalRows;
 
     public function registerEvents(): array
     {
-        $this->totalRows = $this->query()->get()->count();
-
         return [
             BeforeExport::class => function () {
                 $this->export = Export::query()->create([
@@ -37,7 +34,7 @@ class TransactionsByMonth implements WithMapping, WithHeadings, WithTitle, FromQ
                     'file_path' => 'public/transactionsByMonth.xlsx',
                     'status' => 'started',
                     'query_count' => $this->query()->count(),
-                    'total_rows' => $this->totalRows,
+                    'total_rows' => $this->query()->get()->count(),
                     'content' => json_encode([
                         'query' => $this->query()->toSql(),
                         'bindings' => $this->query()->getBindings(),
@@ -74,7 +71,6 @@ class TransactionsByMonth implements WithMapping, WithHeadings, WithTitle, FromQ
         // Then check if ($this->map === $this->chunkSize())
         // and if so, update the export with the new processed rows
         // So one increment update every chunk size instead of every row
-
 
         $this->export->increment('processed_rows');
 
