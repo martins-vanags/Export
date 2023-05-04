@@ -4,7 +4,6 @@ namespace App\Exports;
 
 use App\Models\Export;
 use App\Models\Transaction;
-use Illuminate\Console\OutputStyle;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -23,7 +22,7 @@ class TransactionsByMonth implements WithMapping, WithHeadings, WithTitle, FromQ
 {
     use Exportable;
 
-    public Model|Builder $export;
+    public null|Builder|Model $export = null;
 
     public function registerEvents(): array
     {

@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->integer('total_rows')->default(0);
             $table->integer('processed_rows')->default(0);
             $table->longText('content')->nullable();
+            $table->longText('stack_trace')->nullable();
             $table->timestamps();
         });
     }
